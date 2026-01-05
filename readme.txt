@@ -1,7 +1,7 @@
 
 === Goal Progress ===
 
-Contributors:      Nate Finch
+Contributors:      n8finch
 Tags:              block, progress, goal, thermometer, tracker
 Tested up to:      6.9
 Stable tag:        0.1.0

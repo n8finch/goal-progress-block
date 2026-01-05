@@ -1,0 +1,17 @@
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+.wp-block-n8finch-goal-progress {
+	/* Ensure proper spacing in editor */
+	padding: 1rem;
+	background-color: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+}
+
+/* Highlight on selection */
+.wp-block-n8finch-goal-progress.is-selected {
+	border-color: #007cba;
+	box-shadow: 0 0 0 1px #007cba;
+}

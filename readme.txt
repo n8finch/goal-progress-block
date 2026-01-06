@@ -1,5 +1,5 @@
 
-=== Goal Progress ===
+=== Goal Progress Tracker ===
 
 Contributors:      n8finch
 Tags:              block, progress, goal, thermometer, tracker
@@ -12,7 +12,7 @@ A beautiful and interactive goal progress tracker that displays progress as a ho
 
 == Description ==
 
-The Goal Progress block allows you to create stunning visual representations of your goals and achievements. Perfect for fundraising campaigns, project milestones, fitness goals, or any metric you want to track and display on your website.
+The Goal Progress Tracker block allows you to create stunning visual representations of your goals and achievements. Perfect for fundraising campaigns, project milestones, fitness goals, or any metric you want to track and display on your website.
 
 Key Features:
 

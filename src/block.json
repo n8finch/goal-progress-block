@@ -10,9 +10,9 @@
   "example": {
     "attributes": {
       "goalLabel": "Fundraising Goal",
-      "currentValue": 7500,
+      "currentValue": 42,
       "minValue": 0,
-      "maxValue": 10000,
+      "maxValue": 100,
       "showAsPercentage": false,
       "gradientStart": "#4facfe",
       "gradientEnd": "#00f2fe",
@@ -57,6 +57,21 @@
       "default": " / "
     }
   },
+  "styles": [
+    {
+      "name": "thermometer",
+      "label": "Thermometer",
+      "isDefault": true
+    },
+    {
+      "name": "circle-outline",
+      "label": "Circle Outline"
+    },
+    {
+      "name": "circle-solid",
+      "label": "Circle Solid"
+    }
+  ],
   "supports": {
     "html": false,
     "align": true

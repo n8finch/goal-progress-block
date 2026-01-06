@@ -5,6 +5,15 @@
     "author": "Nate Finch",
     "license": "GPL-2.0-or-later",
     "main": "build/index.js",
+    "files": [
+        "build",
+        "languages",
+        "src",
+        "goal-progress.php",
+        "package.json",
+        "package-lock.json",
+        "readme.txt"
+    ],
     "scripts": {
         "build": "wp-scripts build --webpack-copy-php",
         "format": "wp-scripts format",

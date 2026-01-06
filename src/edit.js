@@ -69,6 +69,15 @@ export default function Edit({ attributes, setAttributes }) {
 
   const blockProps = useBlockProps();
 
+  // Determine style variant from blockProps className
+  const isCircleOutline =
+    blockProps.className &&
+    blockProps.className.includes('is-style-circle-outline');
+  const isCircleSolid =
+    blockProps.className &&
+    blockProps.className.includes('is-style-circle-solid');
+  const isCircle = isCircleOutline || isCircleSolid;
+
   // Calculate percentage for the visual fill (always left to right)
   const percentage = Math.min(
     100,
@@ -84,6 +93,11 @@ export default function Edit({ attributes, setAttributes }) {
     : reverseDirection
     ? `${maxValue} ${labelConnector} ${minValue}`
     : `${currentValue} ${labelConnector} ${maxValue}`;
+
+  // Circle calculations
+  const radius = 60;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
     <>
@@ -195,22 +209,100 @@ export default function Edit({ attributes, setAttributes }) {
 
       <div {...blockProps}>
         <div className='goal-progress-container'>
-          <div className='goal-progress-header'>
-            <span className='goal-progress-label'>{goalLabel}</span>
-            <span className='goal-progress-value'>{displayValue}</span>
-          </div>
+          {!isCircle ? (
+            <>
+              <div className='goal-progress-header'>
+                <span className='goal-progress-label'>{goalLabel}</span>
+                <span className='goal-progress-value'>{displayValue}</span>
+              </div>
 
-          <div className='goal-progress-thermometer'>
-            <div className='goal-progress-track'>
-              <div
-                className='goal-progress-fill'
-                style={{
-                  width: `${reverseDirection ? 100 - percentage : percentage}%`,
-                  background: `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`,
-                }}
-              />
+              <div className='goal-progress-thermometer'>
+                <div className='goal-progress-track'>
+                  <div
+                    className='goal-progress-fill'
+                    style={{
+                      width: `${
+                        reverseDirection ? 100 - percentage : percentage
+                      }%`,
+                      background: `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`,
+                    }}
+                  />
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className='goal-progress-circle-wrapper'>
+              <svg className='goal-progress-circle' viewBox='0 0 160 160'>
+                {isCircleSolid ? (
+                  <>
+                    <defs>
+                      <linearGradient
+                        id={`gradient-${gradientStart}-${gradientEnd}`}
+                        x1='0%'
+                        y1='0%'
+                        x2='100%'
+                        y2='100%'>
+                        <stop offset='0%' stopColor={gradientStart} />
+                        <stop offset='100%' stopColor={gradientEnd} />
+                      </linearGradient>
+                    </defs>
+                    <circle cx='80' cy='80' r='60' fill='#f0f0f0' />
+                    <circle
+                      cx='80'
+                      cy='80'
+                      r='60'
+                      fill={`url(#gradient-${gradientStart}-${gradientEnd})`}
+                      style={{
+                        clipPath: `inset(${100 - percentage}% 0 0 0)`,
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <defs>
+                      <linearGradient
+                        id={`gradient-${gradientStart}-${gradientEnd}`}
+                        x1='0%'
+                        y1='0%'
+                        x2='100%'
+                        y2='100%'>
+                        <stop offset='0%' stopColor={gradientStart} />
+                        <stop offset='100%' stopColor={gradientEnd} />
+                      </linearGradient>
+                    </defs>
+                    <circle
+                      cx='80'
+                      cy='80'
+                      r={radius}
+                      stroke='#f0f0f0'
+                      strokeWidth='12'
+                      fill='none'
+                    />
+                    <circle
+                      cx='80'
+                      cy='80'
+                      r={radius}
+                      stroke={`url(#gradient-${gradientStart}-${gradientEnd})`}
+                      strokeWidth='12'
+                      strokeLinecap='round'
+                      fill='none'
+                      strokeDasharray={circumference}
+                      strokeDashoffset={strokeDashoffset}
+                      style={{
+                        transform: 'rotate(-90deg)',
+                        transformOrigin: '50% 50%',
+                        transition: 'stroke-dashoffset 0.6s ease-in-out',
+                      }}
+                    />
+                  </>
+                )}
+              </svg>
+              <div className='goal-progress-circle-content'>
+                <div className='goal-progress-circle-value'>{displayValue}</div>
+                <div className='goal-progress-circle-label'>{goalLabel}</div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>

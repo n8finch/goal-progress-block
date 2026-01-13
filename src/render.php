@@ -35,13 +35,13 @@ $goprog_gradientEnd = isset( $attributes['gradientEnd'] ) ? $attributes['gradien
 $goprog_reverseDirection = ! empty( $attributes['reverseDirection'] );
 
 // Calculate percentage for the visual fill (always left to right)
-$percentage = min(
+$goprog_percentage = min(
     100,
     max(0, (($goprog_currentValue - $goprog_minValue) / ($goprog_maxValue - $goprog_minValue)) * 100)
 );
 
 // Calculate display percentage (handle reverse direction)
-$displayPercentage = $goprog_reverseDirection ? 100 - $percentage : $percentage;
+$displayPercentage = $goprog_reverseDirection ? 100 - $goprog_percentage : $goprog_percentage;
 // Format the display value
 $displayValue = $goprog_showAsPercentage
     ? round($displayPercentage) . '%'
@@ -52,7 +52,7 @@ $displayValue = $goprog_showAsPercentage
         // Circle calculations
 $radius = 60;
 $circumference = 2 * M_PI * $radius;
-$stroke_dash_offset = $circumference - ($percentage / 100) * $circumference;
+$stroke_dash_offset = $circumference - ($goprog_percentage / 100) * $circumference;
 
 
 // echo '<pre>';
@@ -60,7 +60,7 @@ $stroke_dash_offset = $circumference - ($percentage / 100) * $circumference;
 // var_dump( esc_attr( get_block_wrapper_attributes() ));
 
 ?>
-<div <?php echo get_block_wrapper_attributes() ?>>
+<div <?php echo esc_attr( get_block_wrapper_attributes() ) ?>>
     <div class="goal-progress-container">
       <?php if ( ! $is_circle ) : ?>
         <div class="goal-progress-header">
@@ -72,7 +72,7 @@ $stroke_dash_offset = $circumference - ($percentage / 100) * $circumference;
           <div class="goal-progress-track">
             <div
               class="goal-progress-fill"
-              style="width: <?php echo esc_attr( $goprog_reverseDirection ? 100 - $percentage : $percentage ); ?>%;
+              style="width: <?php echo esc_attr( $goprog_reverseDirection ? 100 - $goprog_percentage : $goprog_percentage ); ?>%;
                 background: linear-gradient(to right, <?php echo esc_attr( $goprog_gradientStart ); ?>, <?php echo esc_attr( $goprog_gradientEnd ); ?>);"
             />
           </div>
@@ -98,7 +98,7 @@ $stroke_dash_offset = $circumference - ($percentage / 100) * $circumference;
                   cy="80"
                   r="60"
                   fill="url(#gradient-<?php echo esc_attr( $goprog_gradientStart ); ?>-<?php echo esc_attr( $goprog_gradientEnd ); ?>)"
-                  style="clip-path: inset(<?php echo 100 - $percentage; ?>% 0 0 0);"
+                  style="clip-path: inset(<?php echo esc_attr( 100 - $goprog_percentage ); ?>% 0 0 0);"
                 />
             <?php else :  // Circle outline style ?>
                 <defs>

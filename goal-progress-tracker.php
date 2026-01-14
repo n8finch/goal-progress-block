@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Goal Progress Tracker
  * Description:       A beautiful goal progress tracker that displays progress as a horizontal thermometer with customizable gradient colors.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.9
  * Requires PHP:      8.0
  * Author:            Nate Finch

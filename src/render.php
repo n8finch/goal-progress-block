@@ -54,15 +54,10 @@ $radius = 60;
 $circumference = 2 * M_PI * $radius;
 $stroke_dash_offset = $circumference - ($goprog_percentage / 100) * $circumference;
 
-
-// echo '<pre>';
-// var_dump( get_block_wrapper_attributes() );
-// var_dump( esc_attr( get_block_wrapper_attributes() ));
-
 ?>
-<div <?php echo esc_attr( get_block_wrapper_attributes() ) ?>>
+<div class="<?php echo esc_attr( $wrapper_classes ) ?>">
+  <?php if ( ! $is_circle ) : ?>
     <div class="goal-progress-container">
-      <?php if ( ! $is_circle ) : ?>
         <div class="goal-progress-header">
           <span class="goal-progress-label"><?php echo esc_html( $goprog_goalLabel ); ?></span>
           <span class="goal-progress-value"><?php echo esc_html( $displayValue ); ?></span>
@@ -77,64 +72,64 @@ $stroke_dash_offset = $circumference - ($goprog_percentage / 100) * $circumferen
             />
           </div>
         </div>
-      <?php else : ?>
-        <div class="goal-progress-circle-wrapper">
-          <svg class="goal-progress-circle" viewBox="0 0 160 160">
-            <?php if ( $is_circle_solid ) : ?>
-                <defs>
-                  <linearGradient id="gradient-<?php echo esc_attr( $goprog_gradientStart ); ?>-<?php echo esc_attr( $goprog_gradientEnd ); ?>" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="<?php echo esc_attr( $goprog_gradientStart ); ?>" />
-                    <stop offset="100%" stop-color="<?php echo esc_attr( $goprog_gradientEnd ); ?>" />
-                  </linearGradient>
-                </defs>
-                <circle
-                  cx="80"
-                  cy="80"
-                  r="60"
-                  fill="#f0f0f0"
-                />
-                <circle
-                  cx="80"
-                  cy="80"
-                  r="60"
-                  fill="url(#gradient-<?php echo esc_attr( $goprog_gradientStart ); ?>-<?php echo esc_attr( $goprog_gradientEnd ); ?>)"
-                  style="clip-path: inset(<?php echo esc_attr( 100 - $goprog_percentage ); ?>% 0 0 0);"
-                />
-            <?php else :  // Circle outline style ?>
-                <defs>
-                  <linearGradient id="gradient-<?php echo esc_attr( $goprog_gradientStart ); ?>-<?php echo esc_attr( $goprog_gradientEnd ); ?>" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="<?php echo esc_attr( $goprog_gradientStart ); ?>" />
-                    <stop offset="100%" stop-color="<?php echo esc_attr( $goprog_gradientEnd ); ?>" />
-                  </linearGradient>
-                </defs>
-                <circle
-                  cx="80"
-                  cy="80"
-                  r="<?php echo esc_attr( $radius ); ?>"
-                  stroke="#f0f0f0"
-                  stroke-width="12"
-                  fill="none"
-                />
-                <circle
-                  cx="80"
-                  cy="80"
-                  r="<?php echo esc_attr( $radius ); ?>"
-                  stroke="url(#gradient-<?php echo esc_attr( $goprog_gradientStart ); ?>-<?php echo esc_attr( $goprog_gradientEnd ); ?>)"
-                  stroke-width="12"
-                  stroke-linecap="round"
-                  fill="none"
-                  stroke-dasharray="<?php echo esc_attr( $circumference ); ?>"
-                  stroke-dashoffset="<?php echo esc_attr( $stroke_dash_offset ); ?>"
-                  style="transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 0.6s ease-in-out;"
-                />
-            <?php endif; ?>
-          </svg>
-          <div class="goal-progress-circle-content">
-            <div class="goal-progress-circle-value"><?php echo esc_html( $displayValue ); ?></div>
-            <div class="goal-progress-circle-label"><?php echo esc_html( $goprog_goalLabel ); ?></div>
-          </div>
-        </div>
-      <?php endif; ?>
     </div>
-  </div>
+    </div>
+    <?php else : ?>
+      <div class="goal-progress-circle-wrapper">
+        <svg class="goal-progress-circle" viewBox="0 0 160 160">
+          <?php if ( $is_circle_solid ) : ?>
+              <defs>
+                <linearGradient id="gradient-<?php echo esc_attr( $goprog_gradientStart ); ?>-<?php echo esc_attr( $goprog_gradientEnd ); ?>" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="<?php echo esc_attr( $goprog_gradientStart ); ?>" />
+                  <stop offset="100%" stop-color="<?php echo esc_attr( $goprog_gradientEnd ); ?>" />
+                </linearGradient>
+              </defs>
+              <circle
+                cx="80"
+                cy="80"
+                r="60"
+                fill="#f0f0f0"
+              /></circle>
+              <circle
+                cx="80"
+                cy="80"
+                r="60"
+                fill="url(#gradient-<?php echo esc_attr( $goprog_gradientStart ); ?>-<?php echo esc_attr( $goprog_gradientEnd ); ?>)"
+                style="clip-path: inset(<?php echo esc_attr( 100 - $goprog_percentage ); ?>% 0 0 0);"
+              /></circle>
+          <?php else :  // Circle outline style ?>
+              <defs>
+                <linearGradient id="gradient-<?php echo esc_attr( $goprog_gradientStart ); ?>-<?php echo esc_attr( $goprog_gradientEnd ); ?>" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="<?php echo esc_attr( $goprog_gradientStart ); ?>" />
+                  <stop offset="100%" stop-color="<?php echo esc_attr( $goprog_gradientEnd ); ?>" />
+                </linearGradient>
+              </defs>
+              <circle
+                cx="80"
+                cy="80"
+                r="<?php echo esc_attr( $radius ); ?>"
+                stroke="#f0f0f0"
+                stroke-width="12"
+                fill="none"
+              /></circle>
+              <circle
+                cx="80"
+                cy="80"
+                r="<?php echo esc_attr( $radius ); ?>"
+                stroke="url(#gradient-<?php echo esc_attr( $goprog_gradientStart ); ?>-<?php echo esc_attr( $goprog_gradientEnd ); ?>)"
+                stroke-width="12"
+                stroke-linecap="round"
+                fill="none"
+                stroke-dasharray="<?php echo esc_attr( $circumference ); ?>"
+                stroke-dashoffset="<?php echo esc_attr( $stroke_dash_offset ); ?>"
+                style="transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 0.6s ease-in-out;"
+              />
+          <?php endif; ?>
+        </svg>
+        <div class="goal-progress-circle-content">
+          <div class="goal-progress-circle-value"><?php echo esc_html( $displayValue ); ?></div>
+          <div class="goal-progress-circle-label"><?php echo esc_html( $goprog_goalLabel ); ?></div>
+        </div>
+      </div>
+    <?php endif; ?>
 </div>

@@ -9,7 +9,7 @@
  * Author URI:        https://n8finch.com
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       goal-progress
+ * Text Domain:       goal-progress-tracker
  *
  * @package GoalProgress
  */

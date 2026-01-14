@@ -76,7 +76,7 @@
     "html": false,
     "align": true
   },
-  "textdomain": "goal-progress",
+  "textdomain": "goal-progress-tracker",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "render": "file:./render.php",

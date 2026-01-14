@@ -4,7 +4,7 @@
 Contributors:      n8finch
 Tags:              block, progress, goal, thermometer, tracker
 Tested up to:      6.9
-Stable tag:        0.1.1
+Stable tag:        0.1.2
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 

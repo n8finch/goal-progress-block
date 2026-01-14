@@ -1,6 +1,6 @@
 {
-    "name": "goal-progress",
-    "version": "0.1.0",
+    "name": "goal-progress-tracker",
+    "version": "0.1.2",
     "description": "Display goal progress as a beautiful horizontal thermometer with customizable colors and values.",
     "author": "Nate Finch",
     "license": "GPL-2.0-or-later",

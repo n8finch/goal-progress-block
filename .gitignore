@@ -1,3 +1,4 @@
 node_modules
 artefact.xml
 build
+.DS_Store
